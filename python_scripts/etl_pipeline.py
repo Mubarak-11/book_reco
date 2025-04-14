@@ -124,6 +124,14 @@ class load():
         df.to_csv('Books_dataset.csv', index = False)
         logger.info("Data saved to the Books_dataset.csv")
 
+    @staticmethod
+    def read_data(filepath: str, sep: str = ",")->pd.DataFrame:
+        """ Read that data we just loaded above, read from a csv file"""
+        
+        df = pd.read_csv(filepath, sep=",", dtype="object")
+        logger.info(f"Data Loaded from {filepath}")
+
+        return df
 
 #lets test this
 def main():
@@ -146,12 +154,15 @@ def main():
         processing_time = time.time() - start_time
         logger.info(f" Time duration for extract stage is : {processing_time:.2f} seconds")
 
-        #grab csv + combine csv files into a single Dataframe
-        #combined_df = extract.combine_csv(*dataframes)  # *unpack
+         # grab csv + combine csv files into a single Dataframe
+        combined_df = extract.combine_csv(*dataframes)  # *unpack
 
-        #print(f"/n Combined Dataframe: {combined_df.head()}")
-        read = pd.read_csv("/home/bruno/Documents/book_recommendation/python_scripts/combined_output.csv", sep=",", dtype="object")
-        to_df = pd.DataFrame(read)
+        # Save combined DataFrame to CSV
+        #combined_df.to_csv("/home/bruno/Documents/book_recommendation/python_scripts/combined_output.csv", index=False)
+
+        # Read the combined CSV file
+        to_df = load.read_data("/home/bruno/Documents/book_recommendation/python_scripts/combined_output.csv", sep=",")
+        
         
     except Exception as e:
         logger.error(f"Failed to load data: {str(e)}")
