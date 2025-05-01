@@ -1,1 +1,31 @@
+# Ignore Python virtual environment
+.venv/
+venv/
+env/
+
+# Ignore Docker related files
+*.log
+*.pid
+*.swp
+.docker/
+Dockerfile*
+
+# Ignore Python compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore model files (that are too large)
+python_scripts/models/neumf_model.pt
+python_scripts/models/neumf_model_optimized.pt
+
+# Ignore any other temporary files
+.DS_Store
+*.bak
+*.tmp
+*.log
+
 Book_Recommendation_plan.odt
